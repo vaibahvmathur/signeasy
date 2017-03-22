@@ -49,9 +49,11 @@ def addbook(request):
     if request.method == 'POST':
         try:
             Books.objects.get(name__iexact=request.POST['bookname'])
+            print "here in book"
             final_list['error'] = 'Book Already Exist'
             transaction.savepoint_rollback(save_point)
         except Books.DoesNotExist:
+            print "here book error"
             book = Books()
             book.name = request.POST['bookname']
             book.author = request.POST['authname']

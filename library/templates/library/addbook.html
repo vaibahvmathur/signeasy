@@ -1,6 +1,6 @@
 <div class="row main">
     <div class="main-login main-center">
-        <form class="" method="get" action="{% url 'library:addbook' %}" enctype="multipart/form-data">{% csrf_token %}
+        <form class="" method="post" action="{% url 'library:addbook' %}" enctype="multipart/form-data">{% csrf_token %}
             <div class="form-group left-space">
                 <label for="bookname" class="cols-sm-2 control-label">Book Name</label>
                 <div class="cols-sm-10">
