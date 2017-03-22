@@ -1,0 +1,26 @@
+{% extends "library/base.html" %}
+{% block content %}
+    {% for user in users %}
+        <div class="well">
+            <div>
+                <span class="extra-content">{{ forloop.counter }}. </span>
+                <span class="main-content"><b>{{ user.name }}</b>
+                <span class="extra-content"> ( {{ user.email }} )</span>
+            </div>
+            <div class="shif-data">
+                <span> Last Modified :{{ user.modified_date }}<span>
+            </div>
+            <div class="shif-data">Books Issued :
+                {% for book in user.books.all %}
+                    <span> {{ book.name }}<span>,
+                {% endfor %}
+            </div>
+            <div >
+                <button type="button" id = "{{ user.user_id }}" class="btn btn-info delete_btn">
+                    <span class="glyphicon glyphicon-edit"></span> Delete
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+

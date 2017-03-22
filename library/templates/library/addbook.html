@@ -1,0 +1,30 @@
+<div class="row main">
+    <div class="main-login main-center">
+        <form class="" method="get" action="{% url 'library:addbook' %}" enctype="multipart/form-data">{% csrf_token %}
+            <div class="form-group left-space">
+                <label for="bookname" class="cols-sm-2 control-label">Book Name</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="bookname" id="bookname"  placeholder="Enter Book Name" required/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group left-space">
+                <label for="authname" class="cols-sm-2 control-label">Author Name</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="authname" id="authname"  placeholder="Enter Author Name" required/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ">
+               <input type="submit" class="btn btn-primary btn-lg btn-block login-button">
+            </div>
+        </form>
+    </div>
+</div>
+

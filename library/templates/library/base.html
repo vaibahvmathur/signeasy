@@ -1,0 +1,119 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript for Bootstrap-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Latest Fontawesome bootstap-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <!-- JQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--Angular JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!--Pagination -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
+    <!--Local CSS -->
+    <link rel="stylesheet" href='{% static "library/css/local.css" %}' />
+    <!--Local JS -->
+    <script src="{% static "library/js/local.js" %}"></script>
+    {% block scripts %}
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        <h2>Library System</h2>
+        <div class="list-group">
+            <a data-toggle="modal" data-target="#newuser" href="#newuser" class="list-group-item ">
+                <h4 class="list-group-item-heading">Add User</h4>
+                <p class="list-group-item-text">Add new user to library system</p>
+            </a>
+            <a data-toggle="modal" data-target="#newbook" href="#newbook"  class="list-group-item ">
+                <h4 class="list-group-item-heading">Add Book</h4>
+                <p class="list-group-item-text">Add new Book to library system</p>
+            </a>
+            <a href="{% url 'library:issuebook' %}" class="list-group-item ">
+                <h4 class="list-group-item-heading">Issue Book</h4>
+                <p class="list-group-item-text">Issue Book to user</p>
+            </a>
+        </div>
+        <hr/>
+        {{ messages }}
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="container">
+            <div>
+                <div class="container-fluid">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="newuser" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add User In Library</h4>
+                </div>
+                <div class="modal-body">
+                    {% include "library/adduser.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete User Modal -->
+    <div class="modal fade" id="confirm_delete" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete Blog ?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" id="delete_user">Delete</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Book Modal -->
+    <div class="modal fade" id="newbook" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Book In Library</h4>
+                </div>
+                <div class="modal-body">
+                    {% include "library/addbook.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
